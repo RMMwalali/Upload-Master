@@ -15,7 +15,7 @@
     </h3>
     <br>
     <label>National ID Number:</label>
-    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <input type="text" id="tag1" required pattern="^[1-9]\d{7}$" refresh>
     <br>
     <button id="upload_widget" class="upload-button">Upload National ID</button>
   </div>
@@ -23,7 +23,7 @@
     <h3>2. KRA Pin Certificate</h3>
     <br>
     <label>National ID Number:</label>
-    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <input type="text" id="tag2" required pattern="^[1-9]\d{7}$" refresh>
     <br>
     <button id="KRAPinBtn" class="upload-button">Upload KRA Certificate</button>
   </div>
@@ -31,7 +31,7 @@
     <h3>3. Passport Photograph</h3>
     <br>
     <label>National ID Number:</label>
-    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <input type="text" id="tag3" required pattern="^[1-9]\d{7}$" refresh>
     <br>
     <button id="PassportBtn" class="upload-button">Upload Passport Photo</button>
   </div>
@@ -39,12 +39,15 @@
     <h3>4. Allotment Letter</h3>
     <br>
     <label>National ID Number:</label>
-    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <input type="text" id="tag4" required pattern="^[1-9]\d{7}$" refresh>
     <br>
     <button id="AllotmentLetterBtn" class="upload-button">Upload Allotment Letter</button>
   </div>
   <div id="Others" class="div-content hidden">
     <h3>5. Any other relevant documents.</h3>
+    <br>
+    <label>National ID Number:</label>
+    <input type="text" id="tag5" required pattern="^[1-9]\d{7}$" refresh>
     <br>
     <p>- Any other relevant documents not mentioned so far, eg: Payment Proofs, a letter from the chief etc.</p>
     <p>- Here you are allowed to upload more than one document.</p>
@@ -55,7 +58,7 @@
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 
 <script type="text/javascript">  
-var userID = document.getElementById("tag").value;
+var userID = document.getElementById("tag1").value;
 var timestamp = Date.now();
 var uniqueTag = userID + '_' + timestamp;
 
@@ -101,6 +104,9 @@ document.getElementById("upload_widget").addEventListener("click", function(){
   }, false);
 </script>
 <script>
+var userID = document.getElementById("tag2").value;
+var timestamp = Date.now();
+var uniqueTag = userID + '_' + timestamp;
 var mySecondWidget = cloudinary.createUploadWidget({
   cloudName: 'fileverification', 
   sources: [ 'local' ],
@@ -143,7 +149,7 @@ document.getElementById("KRAPinBtn").addEventListener("click", function(){
   }, false);
 </script>
 <script type="text/javascript">  
-  var userID = document.getElementById("tag").value;
+  var userID = document.getElementById("tag3").value;
   var timestamp = Date.now();
   var uniqueTag = userID + '_' + timestamp;
   
@@ -189,7 +195,7 @@ document.getElementById("KRAPinBtn").addEventListener("click", function(){
     }, false);
 </script>
 <script type="text/javascript">  
-  var userID = document.getElementById("tag").value;
+  var userID = document.getElementById("tag4").value;
   var timestamp = Date.now();
   var uniqueTag = userID + '_' + timestamp;
   
@@ -235,7 +241,7 @@ document.getElementById("KRAPinBtn").addEventListener("click", function(){
     }, false);
 </script>
 <script type="text/javascript">  
-  var userID = document.getElementById("tag").value;
+  var userID = document.getElementById("tag5").value;
   var timestamp = Date.now();
   var uniqueTag = userID + '_' + timestamp;
   

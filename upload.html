@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Upload Master</title>
+</head>
+<body>
+<div id="hero">
+  <div id="UserID" class="div-content">
+    <h3>1. National Identification Card
+    </h3>
+    <br>
+    <label>National ID Number:</label>
+    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <br>
+    <button id="upload_widget" class="upload-button">Upload National ID</button>
+  </div>
+  <div id="KRAPin" class="div-content hidden">
+    <h3>2. KRA Pin Certificate</h3>
+    <br>
+    <label>National ID Number:</label>
+    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <br>
+    <button id="KRAPinBtn" class="upload-button">Upload KRA Certificate</button>
+  </div>
+  <div id="Passport" class="div-content hidden">
+    <h3>3. Passport Photograph</h3>
+    <br>
+    <label>National ID Number:</label>
+    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <br>
+    <button id="PassportBtn" class="upload-button">Upload Passport Photo</button>
+  </div>
+  <div id="AllotmentLetter" class="div-content hidden">
+    <h3>4. Allotment Letter</h3>
+    <br>
+    <label>National ID Number:</label>
+    <input type="text" id="tag" required pattern="^[1-9]\d{7}$" refresh>
+    <br>
+    <button id="AllotmentLetterBtn" class="upload-button">Upload Allotment Letter</button>
+  </div>
+  <div id="Others" class="div-content hidden">
+    <h3>5. Any other relevant documents.</h3>
+    <br>
+    <p>- Any other relevant documents not mentioned so far, eg: Payment Proofs, a letter from the chief etc.</p>
+    <p>- Here you are allowed to upload more than one document.</p>
+    <button id="OthersBtn" class="upload-button">Upload Files</button>
+  </div>
+  <button id="nextBtn" disabled>NEXT  <i class="fas fa-arrow-right"></i></button>
+</div>
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+<script type="text/javascript">  
+var userID = document.getElementById("tag").value;
+var timestamp = Date.now();
+var uniqueTag = userID + '_' + timestamp;
+
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'fileverification', 
+  sources: [ 'local' ],
+  tags: [uniqueTag],
+  multiple: false,
+  clientAllowedFormats: "pdf",
+  showPoweredBy: false,
+  styles:{
+    palette: {
+      window: "#FFF",
+      windowBorder: "#040404",
+      tabIcon: "#0E2F5A",
+      menuIcons: "#5A616A",
+      textDark: "#000000",
+      textLight: "#FFFFFF",
+      link:  "#0078FF",
+      action:  "#FF620C",
+      inactiveTabIcon: "#0E2F5A",
+      error: "#F44235",
+      inProgress: "#0078FF",
+      complete: "#20B832",
+      sourceBg: "#FFFFFF"
+    },
+    frame: {
+      background: "#0E2F5B99"
+    },
+    fonts: {
+        "'Poppins', sans serif": "https://fonts.googleapis.com/css2?family=Poppins&display=swap",
+    }
+  },
+  uploadPreset: 'NationalID'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+    }
+  }
+)
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
+<script>
+var mySecondWidget = cloudinary.createUploadWidget({
+  cloudName: 'fileverification', 
+  sources: [ 'local' ],
+  clientAllowedFormats: "pdf",
+  showPoweredBy: false,
+  multiple: false,
+  showAdvancedOptions: true,
+  styles:{
+    palette: {
+      window: "#FFF",
+      windowBorder: "#040404",
+      tabIcon: "#0E2F5A",
+      menuIcons: "#5A616A",
+      textDark: "#000000",
+      textLight: "#FFFFFF",
+      link:  "#0078FF",
+      action:  "#FF620C",
+      inactiveTabIcon: "#0E2F5A",
+      error: "#F44235",
+      inProgress: "#0078FF",
+      complete: "#20B832",
+      sourceBg: "#FFFFFF"
+    },
+    frame: {
+      background: "#0E2F5B99"
+    },
+    fonts: {
+        "'Poppins', sans serif": "https://fonts.googleapis.com/css2?family=Poppins&display=swap",
+    }
+  },
+  uploadPreset: 'KRA_Pin'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+    }
+  }
+)
+
+document.getElementById("KRAPinBtn").addEventListener("click", function(){
+    mySecondWidget.open();
+  }, false);
+</script>
+<script type="text/javascript">  
+  var userID = document.getElementById("tag").value;
+  var timestamp = Date.now();
+  var uniqueTag = userID + '_' + timestamp;
+  
+  var passportWidget = cloudinary.createUploadWidget({
+    cloudName: 'fileverification', 
+    sources: [ 'local' ],
+    tags: [uniqueTag],
+    multiple: false,
+    clientAllowedFormats: "pdf",
+    showPoweredBy: false,
+    styles:{
+      palette: {
+        window: "#FFF",
+        windowBorder: "#040404",
+        tabIcon: "#0E2F5A",
+        menuIcons: "#5A616A",
+        textDark: "#000000",
+        textLight: "#FFFFFF",
+        link:  "#0078FF",
+        action:  "#FF620C",
+        inactiveTabIcon: "#0E2F5A",
+        error: "#F44235",
+        inProgress: "#0078FF",
+        complete: "#20B832",
+        sourceBg: "#FFFFFF"
+      },
+      frame: {
+        background: "#0E2F5B99"
+      },
+      fonts: {
+          "'Poppins', sans serif": "https://fonts.googleapis.com/css2?family=Poppins&display=swap",
+      }
+    },
+    uploadPreset: 'Passport'}, (error, result) => { 
+      if (!error && result && result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info); 
+      }
+    }
+  )
+  
+  document.getElementById("PassportBtn").addEventListener("click", function(){
+      passportWidget.open();
+    }, false);
+</script>
+<script type="text/javascript">  
+  var userID = document.getElementById("tag").value;
+  var timestamp = Date.now();
+  var uniqueTag = userID + '_' + timestamp;
+  
+  var AllotmentLetterWidget = cloudinary.createUploadWidget({
+    cloudName: 'fileverification', 
+    sources: [ 'local' ],
+    tags: [uniqueTag],
+    multiple: false,
+    clientAllowedFormats: "pdf",
+    showPoweredBy: false,
+    styles:{
+      palette: {
+        window: "#FFF",
+        windowBorder: "#040404",
+        tabIcon: "#0E2F5A",
+        menuIcons: "#5A616A",
+        textDark: "#000000",
+        textLight: "#FFFFFF",
+        link:  "#0078FF",
+        action:  "#FF620C",
+        inactiveTabIcon: "#0E2F5A",
+        error: "#F44235",
+        inProgress: "#0078FF",
+        complete: "#20B832",
+        sourceBg: "#FFFFFF"
+      },
+      frame: {
+        background: "#0E2F5B99"
+      },
+      fonts: {
+          "'Poppins', sans serif": "https://fonts.googleapis.com/css2?family=Poppins&display=swap",
+      }
+    },
+    uploadPreset: 'AllotmentLetter'}, (error, result) => { 
+      if (!error && result && result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info); 
+      }
+    }
+  )
+  
+  document.getElementById("AllotmentLetterBtn").addEventListener("click", function(){
+    AllotmentLetterWidget.open();
+    }, false);
+</script>
+<script type="text/javascript">  
+  var userID = document.getElementById("tag").value;
+  var timestamp = Date.now();
+  var uniqueTag = userID + '_' + timestamp;
+  
+  var OthersWidget = cloudinary.createUploadWidget({
+    cloudName: 'fileverification', 
+    sources: [ 'local' ],
+    tags: [uniqueTag],
+    clientAllowedFormats: "pdf",
+    showPoweredBy: false,
+    styles:{
+      palette: {
+        window: "#FFF",
+        windowBorder: "#040404",
+        tabIcon: "#0E2F5A",
+        menuIcons: "#5A616A",
+        textDark: "#000000",
+        textLight: "#FFFFFF",
+        link:  "#0078FF",
+        action:  "#FF620C",
+        inactiveTabIcon: "#0E2F5A",
+        error: "#F44235",
+        inProgress: "#0078FF",
+        complete: "#20B832",
+        sourceBg: "#FFFFFF"
+      },
+      frame: {
+        background: "#0E2F5B99"
+      },
+      fonts: {
+          "'Poppins', sans serif": "https://fonts.googleapis.com/css2?family=Poppins&display=swap",
+      }
+    },
+    uploadPreset: 'Others'}, (error, result) => { 
+      if (!error && result && result.event === "success") { 
+        console.log('Done! Here is the image info: ', result.info); 
+      }
+    }
+  )
+  
+  document.getElementById("OthersBtn").addEventListener("click", function(){
+    OthersWidget.open();
+    }, false);
+</script>
+<script src="script.js"></script>
+</body>
+</html>

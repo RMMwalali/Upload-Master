@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+    <link href="style.css" rel="stylesheet">
+    <title>Input Form</title>
+</head>
+<body>
+  <div id="basicInfo">
+    <h3>BASIC INFORMATION FORM.</h3>
+    <p>Fill the fields below following the exact details on your</p><p><span>National ID</span>.</p>
+    <br>
+      <form id="userForm">
+      <ul>
+        <li>
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" name="fullName" required pattern="[a-zA-Z\s]+" />
+        </li>
+        <li>
+          <label for="userID">National ID Number:</label>
+          <input type="text" id="userID" name="userID" required pattern="^[1-9]\d{7}$" />
+        </li>
+        <li>
+          <label for="phoneNumber">Phone Number:</label>
+          <input type="tel" id="phoneNumber" name="phoneNumber" required pattern="^\d{10}$" />
+        </li>
+        <li>
+          <label for="kraPin">KRA Pin:</label>
+          <input type="text" id="kraPin" name="kraPin" required pattern="[A-Z0-9]+" />
+        </li>
+        <li>
+          <label for="email">Email Address (Optional):</label>
+          <input type="email" id="email" name="email" />
+        </li>
+        <li>
+          <button type="submit">Submit</button>
+        </li>
+      </ul>
+      </form>
+      <br>
+      <p id="alert">*The File Upload button will stay disabled until you submit your basic information.</p>
+      <button id="fileUploadBtn">File Upload</button>
+    </div>
+    
+    <script src="app.js"></script>
+    <script type="text/javascript">
+      document.getElementById("fileUploadBtn").onclick = function () {
+        location.href = "upload.html";
+      };
+    </script>
+  </body>
+</html>
